@@ -4,6 +4,7 @@ import { Score } from "./components/Score";
 
 function App() {
   const [currentScore, setCurrentScore] = React.useState(0);
+  const [bestScore, setBestScore] = React.useState(0);
 
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
@@ -20,15 +21,24 @@ function App() {
     });
   }, []);
 
+  const restartGame = () => {
+    setCurrentScore(0);
+    cards.forEach((card) => (card.clicked = false));
+    console.log(cards);
+  };
+
   const markClicked = (e) => {
     if (!e.target.classList.contains("card")) return;
-    cards.find((item) => item.id === +e.target.dataset.id).clicked
-      ? setCurrentScore(0)
-      : setCurrentScore((prevScore) => prevScore + 1);
-    cards.map(
-      (item) => item.id === +e.target.dataset.id && (item.clicked = true)
-    );
-    console.log(cards.find((item) => item.id === +e.target.dataset.id));
+    const cardId = +e.target.dataset.id;
+
+    if (!cards.find((card) => card.id === cardId).clicked) {
+      setCurrentScore((prevScore) => {
+        const score = prevScore + 1;
+        if (score > bestScore) setBestScore(score);
+        return score;
+      });
+      cards.map((card) => card.id === cardId && (card.clicked = true));
+    } else restartGame();
 
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -39,14 +49,13 @@ function App() {
       }
       return [...array];
     }
-
     setCards(shuffleArray(cards));
   };
 
   return (
     <>
       <Gameboard cards={cards} markClicked={markClicked} />
-      <Score currentScore={currentScore} />
+      <Score currentScore={currentScore} bestScore={bestScore} />
     </>
   );
 }

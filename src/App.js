@@ -1,6 +1,7 @@
 import { Gameboard } from "./components/Gameboard";
 import React from "react";
 import { Score } from "./components/Score";
+// import { cards } from "./cards";
 
 function App() {
   const [currentScore, setCurrentScore] = React.useState(0);
@@ -9,10 +10,14 @@ function App() {
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
     setCards(() => {
+      const numbers = Array(20)
+        .fill()
+        .map((_, index) => index + 1);
+      numbers.sort(() => Math.random() - 0.5);
       const cards = [];
       for (let i = 1; i < 6; i++) {
         const card = {
-          id: i,
+          id: numbers[i],
           clicked: false,
         };
         cards.push(card);
@@ -24,7 +29,6 @@ function App() {
   const restartGame = () => {
     setCurrentScore(0);
     cards.forEach((card) => (card.clicked = false));
-    console.log(cards);
   };
 
   const markClicked = (e) => {

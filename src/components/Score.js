@@ -1,8 +1,13 @@
 export const Score = (props) => {
   return (
-    <div>
-      <h1>Current score: {props.currentScore}</h1>
-      <h1>Best score: {props.bestScore}</h1>
-    </div>
+    <header className="scoreboard">
+      <p className="score">
+        SCORE <span>{props.currentScore}</span>
+      </p>
+      <h1 className="header">VALORANT MEMORY</h1>
+      <p className="score">
+        BEST <span>{props.bestScore}</span>
+      </p>
+    </header>
   );
 };

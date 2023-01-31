@@ -10,14 +10,11 @@ export const Card = (props) => {
   );
 
   return (
-    <div>
-      <img
-        width="100"
-        src={images[`${props.id}.png`]}
-        className="card"
-        data-id={props.id}
-        alt=""
-      ></img>
-    </div>
+    <img
+      src={images[`${props.id}.png`]}
+      className="card"
+      data-id={props.id}
+      alt=""
+    ></img>
   );
 };

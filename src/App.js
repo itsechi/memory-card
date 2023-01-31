@@ -58,8 +58,8 @@ function App() {
 
   return (
     <>
-      <Gameboard cards={cards} markClicked={markClicked} />
       <Score currentScore={currentScore} bestScore={bestScore} />
+      <Gameboard cards={cards} markClicked={markClicked} />
     </>
   );
 }

@@ -9,13 +9,22 @@ function App() {
 
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
+    generateCards(6);
+  }, []);
+
+  const restartGame = () => {
+    setCurrentScore(0);
+    generateCards(6);
+  };
+
+  const generateCards = (num) => {
     setCards(() => {
       const numbers = Array(20)
         .fill()
         .map((_, index) => index + 1);
       numbers.sort(() => Math.random() - 0.5);
       const cards = [];
-      for (let i = 1; i < 6; i++) {
+      for (let i = 1; i < num; i++) {
         const card = {
           id: numbers[i],
           clicked: false,
@@ -24,11 +33,10 @@ function App() {
       }
       return cards;
     });
-  }, []);
+  };
 
-  const restartGame = () => {
-    setCurrentScore(0);
-    setCards(cards.forEach((card) => (card.clicked = false)));
+  const generateMoreCards = () => {
+    if (cards.every((card) => card.clicked)) generateCards(11);
   };
 
   const markClicked = (e) => {
@@ -54,6 +62,7 @@ function App() {
       return [...array];
     }
     setCards(shuffleArray(cards));
+    generateMoreCards();
   };
 
   return (

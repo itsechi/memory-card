@@ -28,7 +28,7 @@ function App() {
 
   const restartGame = () => {
     setCurrentScore(0);
-    cards.forEach((card) => (card.clicked = false));
+    setCards(cards.forEach((card) => (card.clicked = false)));
   };
 
   const markClicked = (e) => {

@@ -67,11 +67,23 @@ body {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 80rem;
+  max-width: 90rem;
+  animation: fadeIn 1s;
 }
 
 .tutorial {
   font-family: 'Rubik', sans-serif;
   font-size: 1rem;
   letter-spacing: 0.03em;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

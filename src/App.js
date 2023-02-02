@@ -6,7 +6,6 @@ import { Score } from "./components/Score";
 function App() {
   const [currentScore, setCurrentScore] = React.useState(0);
   const [bestScore, setBestScore] = React.useState(0);
-
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
     generateCards(6);
@@ -31,7 +30,7 @@ function App() {
         };
         cards.push(card);
       }
-      return cards;
+      return [...cards];
     });
   };
 
@@ -50,19 +49,19 @@ function App() {
         return score;
       });
       cards.map((card) => card.id === cardId && (card.clicked = true));
-    } else restartGame();
 
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+        }
+        return [...array];
       }
-      return [...array];
-    }
-    setCards(shuffleArray(cards));
-    generateMoreCards();
+      setCards(shuffleArray(cards));
+      generateMoreCards();
+    } else restartGame();
   };
 
   return (

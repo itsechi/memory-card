@@ -1,11 +1,13 @@
 import { Gameboard } from "./components/Gameboard";
 import React from "react";
 import { Score } from "./components/Score";
+import { Victory } from "./components/Victory";
 
 function App() {
   const [currentScore, setCurrentScore] = React.useState(0);
   const [bestScore, setBestScore] = React.useState(0);
   const [cards, setCards] = React.useState([]);
+  const [victory, setVictory] = React.useState(false);
   React.useEffect(() => {
     generateCards(4);
   }, []);
@@ -13,6 +15,7 @@ function App() {
   const restartGame = () => {
     setCurrentScore(0);
     generateCards(4);
+    setVictory(false);
   };
 
   const generateCards = (num) => {
@@ -34,9 +37,13 @@ function App() {
   };
 
   const levelUp = () => {
-    if (currentScore === 2) generateCards(7);
-    if (currentScore === 8) generateCards(10);
-    if (currentScore === 15) generateCards(13);
+    // if (currentScore === 2) generateCards(7);
+    // if (currentScore === 8) generateCards(10);
+    // if (currentScore === 15) generateCards(13);
+    // if (currentScore === 27) setVictory(true);
+
+    // for testing
+        if (currentScore === 2) setVictory(true);
   };
 
   const markClicked = (e) => {
@@ -67,6 +74,7 @@ function App() {
 
   return (
     <>
+      {victory && <Victory restartGame={restartGame} />}
       <Score currentScore={currentScore} bestScore={bestScore} />
       <Gameboard key={cards.length} cards={cards} markClicked={markClicked} />
     </>

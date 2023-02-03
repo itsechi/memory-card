@@ -2,12 +2,14 @@ import { Gameboard } from "./components/Gameboard";
 import React from "react";
 import { Score } from "./components/Score";
 import { Victory } from "./components/Victory";
+import { nanoid } from "nanoid";
 
 function App() {
   const [currentScore, setCurrentScore] = React.useState(0);
   const [bestScore, setBestScore] = React.useState(0);
   const [cards, setCards] = React.useState([]);
   const [victory, setVictory] = React.useState(false);
+  const [gameId, setGameId] = React.useState(nanoid());
   React.useEffect(() => {
     generateCards(4);
   }, []);
@@ -34,16 +36,17 @@ function App() {
       }
       return [...cards];
     });
+    setGameId(nanoid());
   };
 
   const levelUp = () => {
-    // if (currentScore === 2) generateCards(7);
-    // if (currentScore === 8) generateCards(10);
-    // if (currentScore === 15) generateCards(13);
-    // if (currentScore === 27) setVictory(true);
+    if (currentScore === 2) generateCards(7);
+    if (currentScore === 8) generateCards(10);
+    if (currentScore === 15) generateCards(13);
+    if (currentScore === 27) setVictory(true);
 
     // for testing
-        if (currentScore === 2) setVictory(true);
+    // if (currentScore === 2) setVictory(true);
   };
 
   const markClicked = (e) => {
@@ -76,7 +79,7 @@ function App() {
     <>
       {victory && <Victory restartGame={restartGame} />}
       <Score currentScore={currentScore} bestScore={bestScore} />
-      <Gameboard key={cards.length} cards={cards} markClicked={markClicked} />
+      <Gameboard key={gameId} cards={cards} markClicked={markClicked} />
     </>
   );
 }

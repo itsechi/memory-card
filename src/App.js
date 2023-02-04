@@ -40,13 +40,10 @@ function App() {
   };
 
   const levelUp = () => {
-    // if (currentScore === 2) generateCards(7);
-    // if (currentScore === 8) generateCards(10);
-    // if (currentScore === 15) generateCards(13);
-    // if (currentScore === 27) setVictory(true);
-
-    // for testing
-    if (currentScore === 2) setVictory(true);
+    if (currentScore === 2) generateCards(7);
+    if (currentScore === 8) generateCards(10);
+    if (currentScore === 15) generateCards(13);
+    if (currentScore === 27) setVictory(true);
   };
 
   const markClicked = (e) => {

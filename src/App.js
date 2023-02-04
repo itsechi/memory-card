@@ -76,9 +76,14 @@ function App() {
 
   return (
     <>
-      {victory && <Victory restartGame={restartGame} />}
-      <Score currentScore={currentScore} bestScore={bestScore} />
-      <Gameboard key={gameId} cards={cards} markClicked={markClicked} />
+      {victory ? (
+        <Victory restartGame={restartGame} />
+      ) : (
+        <>
+          <Score currentScore={currentScore} bestScore={bestScore} />
+          <Gameboard key={gameId} cards={cards} markClicked={markClicked} />
+        </>
+      )}
     </>
   );
 }

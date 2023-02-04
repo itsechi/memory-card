@@ -1,5 +1,5 @@
-import { Gameboard } from "./components/Gameboard";
 import React from "react";
+import { Gameboard } from "./components/Gameboard";
 import { Score } from "./components/Score";
 import { Victory } from "./components/Victory";
 import { nanoid } from "nanoid";
@@ -56,7 +56,9 @@ function App() {
         if (score > bestScore) setBestScore(score);
         return score;
       });
-      cards.map((card) => card.id === cardId && (card.clicked = true));
+      setCards(
+        cards.map((card) => card.id === cardId && (card.clicked = true))
+      );
 
       function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {

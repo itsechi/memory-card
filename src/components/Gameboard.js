@@ -1,5 +1,4 @@
 import { Card } from "./Card";
-import React from "react";
 
 export const Gameboard = (props) => {
   const generateCards = props.cards.map((item) => (
@@ -8,12 +7,11 @@ export const Gameboard = (props) => {
 
   return (
     <main className="gameboard" onClick={props.markClicked}>
-      <p className="tutorial">
+      <p className="gameboard__text">
         Click on a card to get points but don’t pick the same card you chose
         before!
       </p>
-
-      <section className="cards">{generateCards}</section>
+      <section className="gameboard__cards">{generateCards}</section>
     </main>
   );
 };

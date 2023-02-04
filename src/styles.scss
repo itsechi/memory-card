@@ -15,25 +15,6 @@ body {
   font-family: 'Anton', sans-serif;
 }
 
-.header {
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 68px;
-  letter-spacing: 0.035em;
-  margin: 0rem 5rem;
-}
-
-.score {
-  font-size: 2rem;
-  line-height: 45px;
-  padding: 0.5rem 5rem;
-  background-color: rgba(255, 255, 255, 0.08);
-  clip-path: polygon(10% 0, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
-
-  & span {
-    color: #7AD8BD;
-  }
-}
 
 .scoreboard {
   display: flex;
@@ -41,6 +22,49 @@ body {
   justify-content: center;
   padding: 1rem;
   margin-top: 1rem;
+
+  &__header {
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 68px;
+    letter-spacing: 0.035em;
+    margin: 0rem 5rem;
+  }
+
+  &__score {
+    font-size: 2rem;
+    line-height: 45px;
+    padding: 0.5rem 5rem;
+    background-color: rgba(255, 255, 255, 0.08);
+    clip-path: polygon(10% 0, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+
+    & span {
+      color: #7AD8BD;
+    }
+  }
+}
+
+.gameboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__text {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+  }
+
+  &__cards {
+    margin-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 90rem;
+    animation: fadeIn 1s;
+  }
 }
 
 .card {
@@ -52,29 +76,6 @@ body {
     box-shadow: 0 -3px white;
     cursor: pointer;
   }
-}
-
-.gameboard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.cards {
-  margin-top: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 90rem;
-  animation: fadeIn 1s;
-}
-
-.tutorial {
-  font-family: 'Rubik', sans-serif;
-  font-size: 1rem;
-  letter-spacing: 0.03em;
 }
 
 .overlay {
@@ -99,48 +100,48 @@ body {
     text-shadow: 0px 50px 250px #119580;
     animation: slideScale 1s;
   }
-
-  & button {
-    background: #ece8e1;
-    padding: 0.5rem 4rem;
-    font-size: 1rem;
-    line-height: 45px;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.035em;
-    color: #0f1923;
-    border: none;
-    outline: 1px solid #7D8082;
-    outline-offset: 0.4rem;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-
-    &:hover {
-      color: #ece8e1;
-    }
-
-    &:hover .btn__slide {
-      width: calc(100% + 17px);
-    }
-  }
 }
 
-.btn__slide {
-  background-color: #ff4655;
-  width: 0%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: -8px;
-  transform: skew(-15deg);
-  display: block;
-  z-index: 0;
-  transition: all .2s ease;
-}
-
-.btn__text {
+.btn {
+  background: #ece8e1;
+  padding: 0.5rem 4rem;
+  font-size: 1rem;
+  line-height: 45px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  color: #0f1923;
+  border: none;
+  outline: 1px solid #7D8082;
+  outline-offset: 0.4rem;
+  cursor: pointer;
   position: relative;
+  overflow: hidden;
+
+  &__slide {
+    background-color: #ff4655;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -8px;
+    transform: skew(-15deg);
+    display: block;
+    z-index: 0;
+    transition: all .2s ease;
+  }
+
+  &__text {
+    position: relative;
+  }
+
+  &:hover {
+    color: #ece8e1;
+  }
+
+  &:hover .btn__slide {
+    width: calc(100% + 17px);
+  }
 }
 
 @keyframes fadeIn {
